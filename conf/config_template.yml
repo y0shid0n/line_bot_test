@@ -1,2 +1,4 @@
 default:
   line_notify_token: "hogehoge"
+  line_access_token: "fugafuga"
+  line_user_id: "piyopiyo"

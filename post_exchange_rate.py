@@ -37,7 +37,7 @@ ask = float(usd_jpy["ask"])
 # 買値がtarget_askを下回ったら通知
 # 一度通知したら、再度target_askを上回るまでは通知したくない
 if ask < target_ask and last_ask >= target_ask:
-    message = f"ドル円レートが{target_ask}を下回ったよ！！！"
+    message = f"ドル円レートが{target_ask}円を下回ったよ！！！"
     payload = {'message': message}
     headers = {'Authorization': 'Bearer ' + line_notify_token}
     line_notify = requests.post(line_notify_api, data=payload, headers=headers)

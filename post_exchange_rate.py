@@ -6,7 +6,7 @@ import yaml
 import json
 
 # 通知したい条件（これを下回ったら通知）
-target_ask = 105
+target_ask = 106
 
 # config読み込み
 with open("./conf/config.yml", mode='r', encoding="utf-8") as f:
@@ -30,7 +30,7 @@ else:
 # 為替レートの取得
 rate_data = requests.get("https://www.gaitameonline.com/rateaj/getrate").json()
 # USDJPYのみを取得
-usd_jpy = {i for i in rate_data["quotes"] if i["currencyPairCode"] == "USDJPY"}
+usd_jpy = [i for i in rate_data["quotes"] if i["currencyPairCode"] == "USDJPY"][0]
 # 買値を取得
 ask = float(usd_jpy["ask"])
 
@@ -41,3 +41,8 @@ if ask < target_ask and last_ask >= target_ask:
     payload = {'message': message}
     headers = {'Authorization': 'Bearer ' + line_notify_token}
     line_notify = requests.post(line_notify_api, data=payload, headers=headers)
+
+# 前回取得時の為替レートを更新
+with open(last_ask_file, "w") as f:
+    f.write(str(ask))
+

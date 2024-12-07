@@ -24,7 +24,10 @@ line_notify_api = 'https://notify-api.line.me/api/notify'
 # オプション
 options = Options()
 options.add_argument('--headless')
+
+# raspiだと直接指定しないとだめそう？
 svc = Service(ChromeDriverManager().install())
+# svc = Service("/usr/bin/chromedriver")
 
 # driver
 driver = webdriver.Chrome(service=svc, options=options)
@@ -66,3 +69,6 @@ else:
     payload = {'message': message}
     headers = {'Authorization': 'Bearer ' + line_notify_token}
     line_notify = requests.post(line_notify_api, data=payload, headers=headers)
+
+driver.close()
+driver.quit()

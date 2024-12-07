@@ -2,6 +2,9 @@
 # lxmlのインストールが必要
 
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.by import By
@@ -19,11 +22,12 @@ line_notify_token = config["default"]["line_notify_token"]
 line_notify_api = 'https://notify-api.line.me/api/notify'
 
 # オプション
-ChromeOptions = webdriver.ChromeOptions()
-ChromeOptions.add_argument('--headless')
+options = Options()
+options.add_argument('--headless')
+svc = Service(ChromeDriverManager().install())
 
 # driver
-driver = webdriver.Chrome(options=ChromeOptions)
+driver = webdriver.Chrome(service=svc, options=options)
 
 # 対象のurl
 target_url = "https://www.puroland.jp/passport/"

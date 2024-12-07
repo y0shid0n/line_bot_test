@@ -66,12 +66,12 @@ if icon_status != "#icon-traffic-circle-close":
     payload = {'message': message}
     headers = {'Authorization': 'Bearer ' + line_notify_token}
     line_notify = requests.post(line_notify_api, data=payload, headers=headers)
-# テスト用
-else:
-    message = f"来場予約に空きはないよ！"
-    payload = {'message': message}
-    headers = {'Authorization': 'Bearer ' + line_notify_token}
-    line_notify = requests.post(line_notify_api, data=payload, headers=headers)
+# # テスト用
+# else:
+#     message = f"来場予約に空きはないよ！"
+#     payload = {'message': message}
+#     headers = {'Authorization': 'Bearer ' + line_notify_token}
+#     line_notify = requests.post(line_notify_api, data=payload, headers=headers)
 
 driver.close()
 driver.quit()

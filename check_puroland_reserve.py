@@ -1,5 +1,6 @@
 # ピューロランドの来場予約の空きを確認する
 # lxmlのインストールが必要
+# https://github.com/password123456/setup-selenium-with-chrome-driver-on-ubuntu_debian
 
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
@@ -40,9 +41,11 @@ driver.get(target_url)
 
 # ラズパイだと時間がかかるので待機時間を設定
 # driver.implicitly_wait(30)
-# time.sleep(20)
-wait = WebDriverWait(driver, 20)
-wait.until(expected_conditions.visibility_of_all_elements_located((By.CLASS_NAME, "c-btns c-row")))
+time.sleep(20)
+
+# うまく動いてなさげ
+# wait = WebDriverWait(driver, 20)
+# wait.until(expected_conditions.visibility_of_all_elements_located((By.CLASS_NAME, "c-btns c-row")))
 
 # htmlを取得
 html = driver.page_source.encode('utf-8')

@@ -20,7 +20,7 @@ line_notify_api = 'https://notify-api.line.me/api/notify'
 
 # オプション
 ChromeOptions = webdriver.ChromeOptions()
-# options.add_argument('--headless')
+ChromeOptions.add_argument('--headless')
 
 # driver
 driver = webdriver.Chrome(options=ChromeOptions)
